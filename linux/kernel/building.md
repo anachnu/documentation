@@ -12,10 +12,16 @@ First get the sources, which will take some time:
 $ git clone --depth=1 https://github.com/raspberrypi/linux
 ```
 
+Update apt-get database:
+
+$ sudo apt-get update 
+
+
 Add missing dependencies:
 
 ```
-$ sudo apt-get install bc
+$ sudo apt-get install liblz4-tool python-lz4 build-essential kernel-package libncurses5-dev fakeroot wget bzip2 make git-core bc
+
 ```
 
 Configure the kernel - as well as the default configuration you may wish to [configure your kernel in more detail](configuring.md) or [apply patches from another source](patching.md) to add or remove required functionality:
@@ -33,6 +39,7 @@ $ make bcmrpi_defconfig
 ####Raspberry Pi 2 Default Build Configuration
 ```
 $ cd linux
+$ cp /boot/config-`uname -r` ./.config
 $ KERNEL=kernel7
 $ make bcm2709_defconfig
 ```
